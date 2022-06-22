@@ -1,8 +1,5 @@
-import React from 'react';
+function GetUserID(profileURL) {
 
-function FindSteamID(profileURL) {
-	
-	function getUserID(profileURL) {
 		let urlArr = profileURL.split('/');
 		let profileOrID = urlArr[3];
 		let id = null;
@@ -11,7 +8,7 @@ function FindSteamID(profileURL) {
 			id = urlArr[4];
 		} else {
 			fetch(
-				`http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${STEAMP_API_KEY}&vanityurl=${urlArr[4]}`
+				`http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${STEAM_API_KEY}&vanityurl=${urlArr[4]}`
 			)
 				.then((res) => res.json())
 				.then((res) => {
@@ -25,8 +22,5 @@ function FindSteamID(profileURL) {
 		}
 		return id;
 	}
-	
-	return <div></div>;
-}
 
-export default FindSteamID;
+export default GetUserID;
