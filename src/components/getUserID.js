@@ -1,4 +1,6 @@
-function GetUserID(profileURL) {
+
+
+function getUserID(profileURL) {
 
 		let urlArr = profileURL.split('/');
 		let profileOrID = urlArr[3];
@@ -23,4 +25,4 @@ function GetUserID(profileURL) {
 		return id;
 	}
 
-export default GetUserID;
+export default getUserID;

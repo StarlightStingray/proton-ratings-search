@@ -1,19 +1,25 @@
 import { useState, useEffect } from 'react';
-import GetUserID from './GetUserID';
+import getUserID from './getUserID';
 
 function SearchForm(props) {
 	const { formState, setFormState } = useState('');
 
 	function handleSubmit(event) {
 		event.preventDefault();
-		GetUserID();
+		let id = getUserID(formState);
+		fetch(
+			`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${props.key}&steamid=${formState.steam}`
+		)
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.success !== 1) {
+					throw 'Failed to resolve Steam profile URL';
+				}
+				console.log(res);
+				id = res.steamid;
+			})
+			.catch(console.error);
 	}
-
-	// let steamIDSearch = {
-	// 	vanityURL: '',
-	// 	defaultURL: '',
-	// 	userID: '',
-	// };
 
 	return (
 		<div>
