@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import getUserID from './getUserID';
 
 function SearchForm(props) {
-	const { formState, setFormState } = useState('');
+	const [formState, setFormState] = useState('');
 
 	function handleSubmit(event) {
 		event.preventDefault();
-		let id = getUserID(formState);
+		let id = getUserID(formState, props.key);
 		fetch(
-			`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${props.key}&steamid=${formState.steam}`
+			`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${props.key}&steamid=${id}`
 		)
 			.then((res) => res.json())
 			.then((res) => {
@@ -19,6 +19,7 @@ function SearchForm(props) {
 				id = res.steamid;
 			})
 			.catch(console.error);
+		console.log(formState);
 	}
 
 	return (
