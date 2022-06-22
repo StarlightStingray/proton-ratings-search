@@ -1,6 +1,7 @@
 import React from 'react';
 
 function FindSteamID(profileURL) {
+	
 	function getUserID(profileURL) {
 		let urlArr = profileURL.split('/');
 		let profileOrID = urlArr[3];
@@ -24,19 +25,7 @@ function FindSteamID(profileURL) {
 		}
 		return id;
 	}
-
-	useEffect(() => {});
-
-	function getVanityUserID() {
-		const url = `http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${props.key}&vanityurl=${vanityURL}`;
-
-		fetch(url)
-			.then((res) => res.json())
-			.then((res) => {
-				console.log(res);
-			})
-			.catch(console.error);
-	}
+	
 	return <div></div>;
 }
 

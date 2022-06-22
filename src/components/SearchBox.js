@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { getUserID } from './FindSteamID';
 
 function SearchForm(props) {
 	const { formState, setFormState } = useState('');
 
 	function handleSubmit(event) {
 		event.preventDefault();
-		setSteamIDSearch({});
+		getUserID();
 	}
 
 	// let steamIDSearch = {
