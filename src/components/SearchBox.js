@@ -17,6 +17,7 @@ function SearchForm(props) {
 			.then((res) => res.json())
 			.then((res) => {
 				console.log(res);
+				res.response.games.filter((game) => game.playtime_forever > 1200);
 			})
 			.catch(console.error);
 		console.log(formState);
