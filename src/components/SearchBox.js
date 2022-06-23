@@ -3,20 +3,20 @@ import getUserID from './getUserID';
 
 function SearchForm(props) {
 	const [formState, setFormState] = useState('');
+	// const [ID, setID] = useState();
+	const apiKey = process.env.REACT_APP_STEAM_API_KEY;
 
 	function handleSubmit(event) {
 		event.preventDefault();
-		let id = getUserID(formState, props.key);
-		fetch(
-			`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${props.key}&steamid=${id}`
-		)
+		getUserID(formState, apiKey)
+			.then((id) =>
+				fetch(
+					`https://seir-cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${apiKey}&steamid=${id}`
+				)
+			)
 			.then((res) => res.json())
 			.then((res) => {
-				if (res.success !== 1) {
-					throw 'Failed to resolve Steam profile URL';
-				}
 				console.log(res);
-				id = res.steamid;
 			})
 			.catch(console.error);
 		console.log(formState);

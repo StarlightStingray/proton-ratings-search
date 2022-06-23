@@ -1,25 +1,27 @@
 function getUserID(profileURL, steamKey) {
+	// const apiKey = process.env.REACT_APP_STEAM_API_KEY;
+
 	let urlArr = profileURL.split('/');
 	let profileOrID = urlArr[3];
 	let id = null;
 
 	if (profileOrID === 'profiles') {
-		id = urlArr[4];
+		return Promise.resolve(urlArr[4]);
 	} else {
-		fetch(
-			`http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${steamKey}&vanityurl=${urlArr[4]}`
+		return fetch(
+			`https://seir-cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${steamKey}&vanityurl=${urlArr[4]}`
 		)
 			.then((res) => res.json())
 			.then((res) => {
-				if (res.success !== 1) {
+				// console.log(res.response.steamid);
+				if (res.response.success !== 1) {
 					throw 'Failed to resolve Steam profile URL';
 				}
-				console.log(res);
-				id = res.steamid;
+				console.log(res.response.steamid);
+				return res.response.steamid;
 			})
 			.catch(console.error);
 	}
-	return id;
 }
 
 export default getUserID;

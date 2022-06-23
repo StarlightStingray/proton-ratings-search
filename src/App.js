@@ -2,11 +2,12 @@ import './App.css';
 import SearchBox from './components/SearchBox';
 
 function App() {
-	const key = process.env.STEAM_API_KEY;
+	const apiKey = process.env.REACT_APP_STEAM_API_KEY;
+	console.log(apiKey);
 
 	return (
 		<div className='mainApp'>
-			<SearchBox key={key} />
+			<SearchBox apiKey={apiKey} />
 		</div>
 	);
 }
