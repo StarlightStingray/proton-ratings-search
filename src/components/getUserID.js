@@ -1,5 +1,4 @@
 function getUserID(profileURL, steamKey) {
-
 	let urlArr = profileURL.split('/');
 	let profileOrID = urlArr[3];
 	// let id = null;
@@ -18,9 +17,9 @@ function getUserID(profileURL, steamKey) {
 				}
 				// console.log(res.response.steamid);
 				return res.response.steamid;
-			})
-		
-			// .catch(console.error);
+			});
+
+		// .catch(console.error);
 	}
 }
 

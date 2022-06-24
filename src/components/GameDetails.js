@@ -43,8 +43,11 @@ function GameDetails(props) {
 								{gameDetails.proton.tier.toUpperCase()}
 							</span>
 						</a>
-						<p>Confidence: {gameDetails.proton.confidence}</p>
-						<p>Best Reported Tier: {gameDetails.proton.bestReportedTier}</p>
+						<p>Confidence: {gameDetails.proton.confidence.toUpperCase()}</p>
+						<p>
+							Best Reported Tier:{' '}
+							{gameDetails.proton.bestReportedTier.toUpperCase()}
+						</p>
 						<p>Total Reports: {gameDetails.proton.total}</p>
 					</h2>
 					<img
