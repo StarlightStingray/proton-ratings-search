@@ -43,8 +43,11 @@ function GameDetails(props) {
 								{gameDetails.proton.tier.toUpperCase()}
 							</span>
 						</a>
-						<p>Confidence: {gameDetails.proton.confidence}</p>
-						<p>Best Reported Tier: {gameDetails.proton.bestReportedTier}</p>
+						<p>Confidence: {gameDetails.proton.confidence.toUpperCase()}</p>
+						<p>
+							Best Reported Tier:{' '}
+							{gameDetails.proton.bestReportedTier.toUpperCase()}
+						</p>
 						<p>Total Reports: {gameDetails.proton.total}</p>
 					</h2>
 					<img
@@ -57,6 +60,7 @@ function GameDetails(props) {
 					</span>
 					<h3>PC Requirements</h3>
 					<div
+						id='requirements'
 						dangerouslySetInnerHTML={{
 							__html: gameDetails.pc_requirements.minimum,
 						}}
@@ -64,12 +68,14 @@ function GameDetails(props) {
 
 					<h3>Mac Requirements</h3>
 					<div
+						id='requirements' 
 						dangerouslySetInnerHTML={{
 							__html: gameDetails.mac_requirements.minimum,
 						}}
 					/>
 					<h3>Native Support for Linux Requirements, if available</h3>
 					<div
+						id='requirements'
 						dangerouslySetInnerHTML={{
 							__html: gameDetails.linux_requirements.minimum,
 						}}

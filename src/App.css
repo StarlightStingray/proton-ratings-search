@@ -8,6 +8,12 @@ body {
   color: #FFBF00;
 }
 
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #gameTitle {
   color: #ff00ff;
 }
@@ -23,13 +29,22 @@ body {
 ul {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-li {
-  display: block;
+#gameCards {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
   box-shadow: 0 4px 8px 0 #0180e2;
   margin: 2rem;
   max-width: 460px;
+}
+
+.bb_ul {
+  display: block;
 }
 
 
