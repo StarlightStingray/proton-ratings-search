@@ -1,33 +1,6 @@
 import { useState, useEffect } from 'react';
 import getUserID from './getUserID';
 
-function getCompatInfo(games, compatibleGames) {
-	// console.log(compatibleGames);
-	if (compatibleGames.length > 10 || games.length === 1) {
-		return Promise.resolve(compatibleGames);
-	} else {
-		return fetch(`https://protondb.max-p.me/games/${games[0].appid}/reports/`)
-			.then((res) => res.json())
-			.then((reports) => {
-				// console.log(reports.length);
-				const filteredReps = reports.filter((x) => x.rating);
-
-				if (
-					filteredReps.reduce(
-						(rep, total) =>
-							total + (rep.rating === 'Platinum' || rep.rating === 'Gold'),
-						0
-					) /
-						reports.length >
-					0.5
-				) {
-					compatibleGames.push(games[0]);
-				}
-				return getCompatInfo(games.slice(1), compatibleGames);
-			});
-	}
-}
-
 function SearchForm(props) {
 	const [formState, setFormState] = useState('');
 	// const [ID, setID] = useState();
@@ -44,9 +17,20 @@ function SearchForm(props) {
 			.then((res) => res.json())
 			.then((res) => {
 				console.log(res);
-				return res.response.games.filter((game) => game.playtime_forever > 0);
+				return res.response.games.filter(
+					(game) => game.playtime_forever > 1200
+				);
 			})
-			.then((games) => getCompatInfo(games, []))
+			.then((games) => {
+				let slicedArray = games.slice(0, 10);
+				return Promise.all(
+					slicedArray.map((game) =>
+						fetch(
+							`https://seir-cors-anywhere.herokuapp.com/https://store.steampowered.com/api/appdetails?key=${apiKey}&appids=${game.appid}`
+						).then((res) => res.json())
+					)
+				);
+			})
 			.then((games) => props.setGames(games))
 			.catch(console.error);
 		console.log(formState);
