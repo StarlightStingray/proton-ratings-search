@@ -1,5 +1,9 @@
 ProtonDB Ratings Search
 
+![image](https://user-images.githubusercontent.com/104736102/175698166-ecfc8da2-b89a-4859-afc2-bf3d0bd39048.png)
+![image](https://user-images.githubusercontent.com/104736102/175698220-45c773b8-2523-43c7-8287-a5a9310a6aa2.png)
+![image](https://user-images.githubusercontent.com/104736102/175698236-622bc05b-7015-49dd-a050-cd736a98b089.png)
+
 -Description-
 
 This is a React App which uses the functionality of the Steam Web API to process a request for a specific user's game library by taking in their profile URL, finds 20 games that the user has spent a significant amount of time playing (currently defined at 40 hours or more), and then queries the ProtonDB for each game's overall rating tier. The final output is an array of cards that shows information about the game title, banner image, the short description (again pulled from the Steam store page listings using their API) and finally the game's ProtonDB tier rating.
@@ -9,6 +13,8 @@ When clicking on any of the displayed game cards, the user will be directed to a
 The intent of the application is to make users who are interested in gaming on a Linux machine be able to get an idea how some of their favorite games can be expected to peform if they were to transition away from their current Windows (or Mac) gaming system. Since gaming on Linux has been a rather rocky experience until very recently a lot of users still don't have very strong faith that you can use a Linux-based machine for any kind of serious gaming.
 
 Ideally in the future this app can actually return information based on several customizable filters, and even query for specific games at a time rather than just pulling a list of their currently most played. Given the current constraints of the app, there's some rather specific requirements for it to work at this time - we're assuming the user already has a library of games on Steam, and that they have spent a significant amount of time playing at least a handful of their games already. Furthermore, their profile, game library, and game playtime privacy settings must be set to public in order to actually retrieve this information. Altogether these are not unreasonable expectations of the average person who plays videogames.
+
+As a final note - the screenshots shot a lot of Japanese text. This is because for testing I was using primarily my Steam profile to make the API request, and the information returned is apparently determined by the region the user profile is set to and my region is currently set to japanese, so if any of the information on the listing for the games has Japanese localization available it will return that. This means that an unintended side-effect of how the app is currently constructed is that each user will basically always gets results based on their prefered language (IE when using a profile set to English, all the results always return in English).
 
 -Technologies Used-
 
