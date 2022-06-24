@@ -27,7 +27,7 @@ function SearchForm(props) {
 					slicedArray.map((game) =>
 						fetch(
 							`https://seir-cors-anywhere.herokuapp.com/https://store.steampowered.com/api/appdetails?key=${apiKey}&appids=${game.appid}`
-						).then((res) => res.json())
+						).then((res) => res.json()).then((res) => res[game.appid].data)
 					)
 				);
 			})
