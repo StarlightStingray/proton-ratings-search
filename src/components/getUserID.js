@@ -1,9 +1,8 @@
 function getUserID(profileURL, steamKey) {
-	// const apiKey = process.env.REACT_APP_STEAM_API_KEY;
 
 	let urlArr = profileURL.split('/');
 	let profileOrID = urlArr[3];
-	let id = null;
+	// let id = null;
 
 	if (profileOrID === 'profiles') {
 		return Promise.resolve(urlArr[4]);
@@ -17,10 +16,11 @@ function getUserID(profileURL, steamKey) {
 				if (res.response.success !== 1) {
 					throw 'Failed to resolve Steam profile URL';
 				}
-				console.log(res.response.steamid);
+				// console.log(res.response.steamid);
 				return res.response.steamid;
 			})
-			.catch(console.error);
+		
+			// .catch(console.error);
 	}
 }
 

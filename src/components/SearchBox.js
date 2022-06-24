@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import getUserID from './getUserID';
 
 function SearchForm(props) {
 	const [formState, setFormState] = useState('');
-	// const [ID, setID] = useState();
+	let [error, setError] = useState(null);
+
 	const apiKey = process.env.REACT_APP_STEAM_API_KEY;
 
 	function handleSubmit(event) {
@@ -16,13 +17,13 @@ function SearchForm(props) {
 			)
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(res);
+				// console.log(res);
 				return res.response.games.filter(
 					(game) => game.playtime_forever > 2400
 				);
 			})
 			.then((games) => {
-				let slicedArray = games.slice(0, 10);
+				let slicedArray = games.slice(0, 20);
 				return Promise.all(
 					slicedArray.map((game) =>
 						fetch(
@@ -43,12 +44,13 @@ function SearchForm(props) {
 				);
 			})
 			.then((games) => props.setGames(games))
-			.catch(console.error);
-		console.log(formState);
+			.catch(setError);
+		// console.log(formState);
 	}
 
 	return (
 		<div>
+			{error ? <p>{error}</p> : <></>}
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='searchBar'>Steam Profile URL to lookup: </label>
 				<input
