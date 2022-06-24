@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import getUserID from './getUserID';
 
 function SearchForm(props) {
@@ -22,7 +22,7 @@ function SearchForm(props) {
 				);
 			})
 			.then((games) => {
-				let slicedArray = games.slice(0, 10);
+				let slicedArray = games.slice(0, 20);
 				return Promise.all(
 					slicedArray.map((game) =>
 						fetch(

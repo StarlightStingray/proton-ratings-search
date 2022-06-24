@@ -6,7 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: #282c34;
   color: #FFBF00;
 }
@@ -23,14 +23,23 @@ body {
   color: #00ffff;
 }
 
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 li {
   display: block;
   box-shadow: 0 4px 8px 0 #0180e2;
   margin: 2rem;
+  max-width: 460px;
 }
 
+
 @media screen and (max-width: 768px) {
-  
+  body {
+    display: grid;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
