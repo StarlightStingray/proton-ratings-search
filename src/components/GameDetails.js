@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 function GameDetails(props) {
 	const apiKey = process.env.REACT_APP_STEAM_API_KEY;
-	const [gameDetails, setGameDetails] = useState('');
+	const [gameDetails, setGameDetails] = useState(null);
 	let [error, setError] = useState(null);
 
 	const { id } = useParams();
@@ -25,35 +25,57 @@ function GameDetails(props) {
 			})
 			.then((games) => setGameDetails(games))
 			.catch(setError);
-		// .catch(console.error);
-	}, []);
-    // console.log(gameDetails);
+	}, [apiKey, id]);
 
 	return (
 		<div>
-			{error ? <p>{error}</p> : <></>}
-			<span id='gameTitle'>
-				<h1>{gameDetails.name}</h1>
-			</span>
+			{gameDetails && (
+				<div>
+					{error ? <p>{error}</p> : <></>}
+					<span id='gameTitle'>
+						<h1>{gameDetails.name}</h1>
+					</span>
 
-			<h2>
-				ProtonDB Rating Tier:
-				<a href={`https://www.protondb.com/app/${id}`}>
-					<span id='gameRating'>{gameDetails.proton.tier.toUpperCase()}</span>
-				</a>
-				<p>Confidence: {gameDetails.proton.confidence}</p>
-				<p>Best Reported Tier: {gameDetails.proton.bestReportedTier}</p>
-				<p>Total Reports: {gameDetails.proton.total}</p>
-			</h2>
-			<img
-				id='gameImages'
-				src={gameDetails.header_image}
-				alt='game header or banner'
-			/>
-			<span id='gameDescription'>
-				<h3>{gameDetails.short_description}</h3>
-			</span>
-			<p>{gameDetails.linux_requirements.minimum}</p>
+					<h2>
+						ProtonDB Rating Tier:
+						<a href={`https://www.protondb.com/app/${id}`}>
+							<span id='gameRating'>
+								{gameDetails.proton.tier.toUpperCase()}
+							</span>
+						</a>
+						<p>Confidence: {gameDetails.proton.confidence}</p>
+						<p>Best Reported Tier: {gameDetails.proton.bestReportedTier}</p>
+						<p>Total Reports: {gameDetails.proton.total}</p>
+					</h2>
+					<img
+						id='gameImages'
+						src={gameDetails.header_image}
+						alt='game header or banner'
+					/>
+					<span id='gameDescription'>
+						<h3>{gameDetails.short_description}</h3>
+					</span>
+					<h3>PC Requirements</h3>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: gameDetails.pc_requirements.minimum,
+						}}
+					/>
+
+					<h3>Mac Requirements</h3>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: gameDetails.mac_requirements.minimum,
+						}}
+					/>
+					<h3>Native Support for Linux Requirements, if available</h3>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: gameDetails.linux_requirements.minimum,
+						}}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }
