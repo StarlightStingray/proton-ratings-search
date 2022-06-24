@@ -11,6 +11,24 @@ body {
   color: #FFBF00;
 }
 
+#gameTitle {
+  color: #ff00ff;
+}
+
+#gameRating {
+  color: #e5e4e2;
+}
+
+#gameDescription {
+  color: #00ffff;
+}
+
+li {
+  display: block;
+  box-shadow: 0 4px 8px 0 #0180e2;
+  margin: 2rem;
+}
+
 @media screen and (max-width: 768px) {
   
 }

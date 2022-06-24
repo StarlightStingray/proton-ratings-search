@@ -18,7 +18,7 @@ function SearchForm(props) {
 			.then((res) => {
 				console.log(res);
 				return res.response.games.filter(
-					(game) => game.playtime_forever > 1200
+					(game) => game.playtime_forever > 2400
 				);
 			})
 			.then((games) => {
@@ -27,7 +27,18 @@ function SearchForm(props) {
 					slicedArray.map((game) =>
 						fetch(
 							`https://seir-cors-anywhere.herokuapp.com/https://store.steampowered.com/api/appdetails?key=${apiKey}&appids=${game.appid}`
-						).then((res) => res.json()).then((res) => res[game.appid].data)
+						)
+							.then((res) => res.json())
+							.then((res) => res[game.appid].data)
+							.then((appInfo) => {
+								return fetch(
+									`https://seir-cors-anywhere.herokuapp.com/https://www.protondb.com/api/v1/reports/summaries/${game.appid}.json`
+								)
+									.then((res) => res.json())
+									.then((res) => {
+										return { ...appInfo, proton: res };
+									});
+							})
 					)
 				);
 			})
