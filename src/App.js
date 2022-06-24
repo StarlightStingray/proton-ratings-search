@@ -7,7 +7,6 @@ import { useState } from 'react';
 function App() {
 	const apiKey = process.env.REACT_APP_STEAM_API_KEY;
 	const [games, setGames] = useState([]);
-	console.log(games);
 
 	return (
 		<div className='mainApp'>
