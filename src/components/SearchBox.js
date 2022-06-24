@@ -18,7 +18,7 @@ function SearchForm(props) {
 			.then((res) => {
 				console.log(res);
 				return res.response.games.filter(
-					(game) => game.playtime_forever > 1200
+					(game) => game.playtime_forever > 2400
 				);
 			})
 			.then((games) => {
