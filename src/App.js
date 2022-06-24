@@ -12,7 +12,7 @@ function App() {
 		<div className='mainApp'>
 			<Header />
 			<SearchBox apiKey={apiKey} setGames={setGames} />
-			<GameList games={games} />
+			<GameList games={games.filter((x) => x.hasOwnProperty('steam_appid'))} />
 		</div>
 	);
 }

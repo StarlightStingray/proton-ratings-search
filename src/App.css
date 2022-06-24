@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 body {
   display: flex;
@@ -36,11 +33,11 @@ li {
 }
 
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   body {
     display: grid;
   }
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
