@@ -14,8 +14,6 @@ The intent of the application is to make users who are interested in gaming on a
 
 Ideally in the future this app can actually return information based on several customizable filters, and even query for specific games at a time rather than just pulling a list of their currently most played. Given the current constraints of the app, there's some rather specific requirements for it to work at this time - we're assuming the user already has a library of games on Steam, and that they have spent a significant amount of time playing at least a handful of their games already. Furthermore, their profile, game library, and game playtime privacy settings must be set to public in order to actually retrieve this information. Altogether these are not unreasonable expectations of the average person who plays videogames.
 
-As a final note - the screenshots shot a lot of Japanese text. This is because for testing I was using primarily my Steam profile to make the API request, and the information returned is apparently determined by the region the user profile is set to and my region is currently set to japanese, so if any of the information on the listing for the games has Japanese localization available it will return that. This means that an unintended side-effect of how the app is currently constructed is that each user will basically always gets results based on their prefered language (IE when using a profile set to English, all the results always return in English).
-
 -Technologies Used-
 
 Npm React, React-Router-Dom Javascript, HTML, CSS, the Steam Web API, and the Proton Database.
